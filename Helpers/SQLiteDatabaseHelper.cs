@@ -1,6 +1,7 @@
 ﻿using MaiuAppMinhasCompras_BrunoS.Models;
 using SQLite;
 
+//teste
 namespace MaiuAppMinhasCompras_BrunoS.Helpers
 {
     internal class SQLiteDatabaseHelper
