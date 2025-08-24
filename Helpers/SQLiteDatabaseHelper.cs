@@ -4,7 +4,7 @@ using SQLite;
 //teste
 namespace MaiuAppMinhasCompras_BrunoS.Helpers
 {
-    internal class SQLiteDatabaseHelper
+    public class SQLiteDatabaseHelper
     {
         readonly SQLiteAsyncConnection _conn;
 
