@@ -18,11 +18,18 @@ public partial class ListaProduto : ContentPage
 	}
 
     protected async override void OnAppearing()
-    {
-		todosProdutos = await App.Db.GetAll();
+	{
+		try
+        {
+            todosProdutos = await App.Db.GetAll();
 
-		lista.Clear();
-        todosProdutos.ForEach(i => lista.Add(i));
+            lista.Clear();
+            todosProdutos.ForEach(i => lista.Add(i));
+        }
+		catch (Exception ex)
+        {
+            DisplayAlert("Erro", ex.Message, "OK");
+        }
     }
 
     private void ToolbarItem_Clicked(object sender, EventArgs e)
@@ -69,5 +76,44 @@ public partial class ListaProduto : ContentPage
 		string msg = $"O total é {soma:C}";
 
 		DisplayAlert("Total dos Produtos", msg, "OK");
+    }
+
+    private async void MenuItem_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+			MenuItem selecionado = sender as MenuItem;
+
+			Produto p = selecionado.BindingContext as Produto;
+
+			bool confirm = await DisplayAlert(
+				"Tem Certeza?", $"Remover {p.Descricao}", "Sim", "Não");
+			if (confirm)
+			{
+                await App.Db.Delete(p.Id);
+                lista.Remove(p);
+            }
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Erro", ex.Message, "OK");
+        }
+    }
+
+    private void lst_produtos_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        try
+        {
+            Produto p = e.SelectedItem as Produto;
+
+            Navigation.PushAsync(new Views.EditarProduto
+            {
+                BindingContext = p,
+            });
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Erro", ex.Message, "OK");
+        }
     }
 }
