@@ -25,6 +25,9 @@ namespace MaiuAppMinhasCompras_BrunoS
         {
             InitializeComponent();
 
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
+
             //MainPage = new AppShell();
 
             MainPage = new NavigationPage(new Views.ListaProduto());

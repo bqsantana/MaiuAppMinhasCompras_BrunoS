@@ -20,7 +20,8 @@ public partial class EditarProduto : ContentPage
                 Id = p_anexado.Id,
                 Descricao = txt_descricao.Text,
                 Quantidade = Convert.ToDouble(txt_quantidade.Text),
-                Preco = Convert.ToDouble(txt_preco.Text)
+                Preco = Convert.ToDouble(txt_preco.Text),
+                Categoria = pkr_categoria.SelectedItem.ToString()
             };
 
             await App.Db.Update(p);

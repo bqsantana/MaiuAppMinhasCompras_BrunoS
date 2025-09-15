@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MaiuAppMinhasCompras_BrunoS.Views.RelatorioCategoria"
+             Title="Relatório de Compras">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Frame Padding="0" Margin="10" VerticalOptions="FillAndExpand">
+            <ListView x:Name="lst_produtos" 
+                  IsPullToRefreshEnabled="True">
+                <ListView.Header>
+                    <Grid ColumnDefinitions="100, 100"
+                          BackgroundColor="{StaticResource Gray100}">
+                        <Label Grid.Column="0" Text="Categoria" Padding="5" FontAttributes="Bold"/>
+                        <Label Grid.Column="1" Text="Total" FontAttributes="Bold"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="100, 100">
+                                <Label Grid.Column="0" Text="{Binding Categoria}"/>
+                                <Label Grid.Column="1" Text="{Binding Total, StringFormat='{}{0:c}'}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
+    </StackLayout>
+</ContentPage>
